@@ -2,6 +2,9 @@
 ---
 ## AI based puzzle solver
 Sokoban is a crate pushing puzzle game with an objective to push the crates onto the designated goal areas without creating deadlock states. You can play the [game online](https://www.mathsisfun.com/games/sokoban.html) to quickly understand it. I implemented several AI agents based on Evolutionary search, Monte Carlo Tree Search, A Star search, and simple Breadth First & Depth First search to illustrate the effectiveness of these algorithms in finding a solution. You can see the solution play out as an animation by following the installation guide below.
+## Preview
+Here is the preview of one of the solutions found by the AI agent.<br/>
+![gif of agent finding a solution](https://github.com/dhyani15/Sokoban-Agent/blob/main/assets/graphics/sokoban%20preview.gif)
 ## Installation guide
 Requires Python 3.8 to run
 ##### Install libraries
