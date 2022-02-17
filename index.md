@@ -1,37 +1,58 @@
-## Welcome to GitHub Pages
+# Sokoban Puzzle Solver
+---
+## AI based puzzle solver
+Sokoban is a crate pushing puzzle game with an objective to push the crates onto the designated goal areas without creating deadlock states. You can play the [game online](https://www.mathsisfun.com/games/sokoban.html) to quickly understand it. I implemented several AI agents based on Evolutionary search, Monte Carlo Tree Search, A Star search, and simple Breadth First & Depth First search to illustrate the effectiveness of these algorithms in finding a solution. You can see the solution play out as an animation by following the installation guide below.
+## Preview
+Here is the preview of one of the solutions found by the AI agent.<br/>
+![gif of agent finding a solution](https://github.com/dhyani15/Sokoban-Agent/blob/main/assets/graphics/sokoban%20preview.gif)
+## Installation guide
+Requires Python 3.8 to run
+##### Install libraries
+`$ pip install -r requirements.txt`
+## Run the Game
 
-You can use the [editor on GitHub](https://github.com/dhyani15/Sokoban-Agent/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+##### Solve as a human
+`$ python3 game.py --play`
+`$ python3 game.py --agent Human`
+##### Solve with an agent
+`$ python3 game.py --agent [AGENT-NAME-HERE]`
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+`$ python3 game.py --agent BFS #run game with BFS agent`
 
-### Markdown
+`$ python3 game.py --agent AStar --no_render #run game with AStar agent without rendering`
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+##### Solve with fast_game.py
+`$ python3 game.py --agent [AGENT-NAME-HERE]`
 
-```markdown
-Syntax highlighted code block
+`$ python3 fast_game.py --agent BFS #run all 100 levels with BFS agent`
 
-# Header 1
-## Header 2
-### Header 3
+`$ python3 fast_game.py --agent HillClimber -trials 3 #run all 100 levels 3 times with HillClimber agent`
 
-- Bulleted
-- List
+## Parameters
+`--play` - run the game as a human player
 
-1. Numbered
-2. List
+`--no_render` - run the AI solver without showing the game screen 
 
-**Bold** and _Italic_ and `Code` text
+`--agent [NAME]`  - the type of agent to use [Human, DoNothing, Random, BFS, DFS, AStar, HillClimber, Genetic, MCTS]
 
-[Link](url) and ![Image](src)
-```
+`--level [#]` - which level to test (0-99) or 'random' for a randomly selected level that an agent can solve in at most 2000 iterations. These levels can be found in the 'assets/gen_levels/' folder (default=0)
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+`--iterations [#]` - how many iterations to allow the agent to search for (default=3000)
 
-### Jekyll Themes
+`--solve_speed [#]` - how fast (in ms) to show each step of the solution being executed on the game screen 
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/dhyani15/Sokoban-Agent/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+`--trials [#]` - number of repeated trials to run the levels for _(used only in fast_game.py)_ (default=1)
 
-### Support or Contact
+## Agent Types
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+#### Agent_py
+* **Agent()** - base class for the Agents
+* **RandomAgent()** - agent that returns list of 20 random directions
+* **DoNothingAgent()** - agent that makes no movement for 20 steps
+
+* **BFSAgent()** - agent that solves the level using Breadth First Search
+* **DFSAgent()** - agent that solves the level using Depth First Search
+* **AStarAgent()** - agent that solves the level using A* Search
+* **HillClimberAgent()** - agent that solves the level using HillClimber Search algorithm
+* **GeneticAgent()** - agent that solves the level using Genetic Search algorithm
+* **MCTSAgent()** - agent that solves the level using Monte Carlo Tree Search algorithm
